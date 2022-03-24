@@ -1,0 +1,42 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block title %}{{category.name}}{% endblock %}
+
+{% block content %}
+<main>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="pb-3 h5">{{category.name|title}}</div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                {% for product in products %}
+
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <a href="{{ product.get_abs_url }}">
+                                <img class="img-fluid" alt="Responsive image" src="{{ product.image.url }}">
+                            </a>
+                            <p class="card-text">
+                                <a class="text-dark text-decoration-none" href="{{ product.get_abs_url }}">{{ product.title }}</a>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </div>
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+</main>
+
+{% endblock %}

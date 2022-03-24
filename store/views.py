@@ -3,16 +3,15 @@ from django.db.models import F
 
 from .models import Category, Size, Product
 
-################################################################
-# TODO: Now in your views check whether a product_size is available for the given product or not. 
-# If product_size is not there do a create or else update the quantity.
-################################################################
-
-
 def categories_all(request):
     return {
         'categories': Category.objects.all()
     }
+    
+def categories_list(request, category_slug):
+    category = get_object_or_404(Category, slug=category_slug)
+    products = Product.objects.filter(category=category)
+    return render(request, 'store/category.html', {'category': category, 'products': products})
 
 def products_all(request):
     products = Product.objects.all()
@@ -31,5 +30,3 @@ def product_info(request, slug):
                   {'product': product, 'sizes': sizes
         }
     )
-    
-

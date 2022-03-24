@@ -61,7 +61,7 @@
                                 </li>
                                 <hr class="mt-0 mb-0"/>
                                 {% for c in categories %}
-                                <li {% if c.slug == category.slug %}class="selected" {% endif %}>
+                                <li {% if c.slug == category.slug %} class="selected" {% endif %}>
                                     <a class="dropdown-item" href="{{ c.get_abs_url }}">{{ c.name|title }}</a>
                                 </li>
                                 {% endfor %}

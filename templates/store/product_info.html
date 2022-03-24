@@ -20,7 +20,7 @@
                         <div class="row p-3">
                             <div class="col-6">
                                 <label for="select">Sizes</label>
-                                <select id="select">
+                                <select name="size" id="size">
                                     {% for s in sizes %}
                                         <option value="">{{ s }}</option>
                                     {% endfor %}
@@ -33,8 +33,11 @@
                         <div class="row p-3">
                             <div class="col-6">
                                 <label for="select">Qty</label>
-                                <select id="select">
-                                    <option value="">AFTER SELECTING SIZE, For loop in range(1, selectedsize.quantity+1)</option>
+                                <select name="qty" id="qty">
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4</option>
                                 </select>
                             </div>
                             <div class="col-6 text-end"><button type="button" class="btn btn-secondary btn-sm">Add to
