@@ -1,7 +1,11 @@
+"""Elgiz Abbasov
+    Tables
+"""
 from django.db import models
 from django.contrib.auth.models import User 
 from django.urls import reverse
 from django.db.models import F
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255, db_index=True)
@@ -15,6 +19,7 @@ class Category(models.Model):
     
     def get_abs_url(self):
         return reverse('store:categories_list', args=[self.slug])
+
 
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
@@ -39,17 +44,6 @@ class Product(models.Model):
     
     def get_abs_url(self):
         return reverse('store:product_info', args=[self.slug])
-    
-    # def save(self, *args, **kwargs):
-    #     size_exists = Size.objects.filter(
-    #          prod_size=self.prod_size, product=self.product
-    #     ).exists()
-    #     if size_exists:
-    #        Size.objects.filter(
-    #            prod_size=self.prod_size, product=self.product
-    #        ).update(quantity=F('quantity')+1)
-    #     else:
-    #        super(Size, self).save(*args, **kwargs)
 
 
 class Size(models.Model):
@@ -65,6 +59,7 @@ class Size(models.Model):
     class Meta:
         verbose_name_plural = 'Sizes'
         ordering = ('-created',)
+        # TODO: #5 
         unique_together = ( 
                            ("product", "prod_size"),
         )
