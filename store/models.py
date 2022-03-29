@@ -59,7 +59,7 @@ class Size(models.Model):
     class Meta:
         verbose_name_plural = 'Sizes'
         ordering = ('-created',)
-        # TODO: #5 
+        # TODO: #4
         unique_together = ( 
                            ("product", "prod_size"),
         )
