@@ -2,11 +2,6 @@ from django.shortcuts import get_object_or_404, render
 from django.db.models import F
 
 from .models import Category, Size, Product
-
-def categories_all(request):
-    return {
-        'categories': Category.objects.all()
-    }
     
 def categories_list(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
@@ -14,7 +9,7 @@ def categories_list(request, category_slug):
     return render(request, 'store/category.html', {'category': category, 'products': products})
 
 def products_all(request):
-    products = Product.objects.all()
+    products = Product.products.all()
     return render(request, 'store/home.html', {'products': products})
 
 def product_info(request, slug):
@@ -25,8 +20,4 @@ def product_info(request, slug):
     sizes = Size.objects.filter(
              product=product, in_stock=True
     )
-    return render(request, 
-                  'store/product_info.html', 
-                  {'product': product, 'sizes': sizes
-        }
-    )
+    return render(request, 'store/product_info.html', {'product': product, 'sizes': sizes})

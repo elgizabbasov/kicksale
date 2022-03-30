@@ -1,10 +1,15 @@
-"""Elgiz Abbasov
+""" Elgiz Abbasov
     Tables
 """
 from django.db import models
 from django.contrib.auth.models import User 
 from django.urls import reverse
 from django.db.models import F
+
+
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return super(ProductManager, self).get_queryset().filter(in_stock=True)
 
 
 class Category(models.Model):
@@ -28,12 +33,14 @@ class Product(models.Model):
     brand = models.CharField(max_length=255)
     condition = models.CharField(max_length=255)
     ## TODO: Multiple images - Only one image per product possible currently
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/', default='images/default.png')
     price = models.DecimalField(max_digits=10, decimal_places=2)
     slug = models.SlugField(max_length=255)
     in_stock = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    objects = models.Manager()
+    products = ProductManager()
 
     class Meta:
         verbose_name_plural = 'Products'

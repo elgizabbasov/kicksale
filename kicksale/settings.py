@@ -1,12 +1,7 @@
 import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '%furs7kn$f2q5e6hl&rgj4hv-a!xo-ou#lqo0s85pd%sarxo0l'
@@ -14,6 +9,7 @@ SECRET_KEY = '%furs7kn$f2q5e6hl&rgj4hv-a!xo-ou#lqo0s85pd%sarxo0l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#TODO: #6
 ALLOWED_HOSTS = []
 
 
@@ -52,7 +48,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'store.views.categories_all',
+                'store.context_processors.categories_all',
             ],
         },
     },
@@ -111,7 +107,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-##TODO: Point to prod server insted of local! 
+##TODO: #6 Point to prod server insted of local! 
 # && not using OS? (win & macos issues?)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
