@@ -1,1 +1,2 @@
 # kicksale
+Welcome to KickSale!
