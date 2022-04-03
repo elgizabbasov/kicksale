@@ -2,7 +2,8 @@ from django.shortcuts import get_object_or_404, render
 from django.db.models import F
 
 from .models import Category, Size, Product
-    
+
+
 def categories_list(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
     products = Product.objects.filter(category=category)
