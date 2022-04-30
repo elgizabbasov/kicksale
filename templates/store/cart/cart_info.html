@@ -5,12 +5,12 @@
 {% block content %}
 <main class="pt-5">
     <div class="container">
-        <h1 class="h5">Your Shopping Cart</h1>
+        <h1 class="h5 text-center">Your Shopping Cart</h1>
         {% for item in cart %}
         {% with product=item.product %}
-        <div data-index="{{product.id}}" class="row mb-4 border product-item">
+        <div data-index="{{ product.id }}" class="row mb-4 border product-item">
             <div class="col-md-3 col-lg-2 order-md-first bg-light">
-                <img class="img-fluid mx-auto d-block" width="120px" alt="Responsive image"
+                <img class="img-fluid mx-auto d-block" width="auto" alt="Responsive image"
                     src="{{ product.image.url }}">
             </div>
             <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
@@ -20,8 +20,8 @@
                 <div class="border">
                     <div class="col border-bottom">
                         <div class="row p-3">
-                            <div class="col-6">Hardback Book</div>
-                            <div class="col-6 text-end"><span class="h6 fw-bold">${{ item.total_price }}</span></div>
+                            <div class="col-6">{{ product.condition }}</div>
+                            <div class="col-6 text-end"><span class="h6 fw-bold">${{ product.price }}</span></div>
                         </div>
                     </div>
                     <div class="col">
@@ -30,7 +30,7 @@
                                 <label for="select">Qty</label>
                                 <select id="select{{product.id}}">
                                     <option selected>
-                                        {{item.quantity}}
+                                        {{ item.quantity }}
                                     </option>
                                     <option value="">1</option>
                                     <option value="">2</option>
@@ -54,10 +54,56 @@
         {% endwith %}
         {% endfor %}
         <div class="col-12 text-end">
-            <div class="h6 fw-bold">Total: $<div id="subtotal" class="d-inline-flex">{{cart.get_total_cart_price}}
+            <div class="h6 fw-bold">Total: $
+                <div id="subtotal" class="d-inline-flex">
+                    {{ cart.get_total_cart_price }}
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+<script>
+    // Delete item from cart
+    $(document).on('click', '.delete-button', function (e) {
+        e.preventDefault();
+        var prodid = $(this).data('index');
+        $.ajax({
+            type: 'POST',
+            url: '{% url "store_cart:cart_delete" %}', 
+            data: {
+                productid: $(this).data('index'),
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                action: 'post'
+            },
+            success: function (json) {
+                $('.product-item[data-index="' + prodid + '"]').remove();
+                document.getElementById("cart-qty").innerHTML = json.quantity
+                document.getElementById("subtotal").innerHTML = json.subtotal
+            },
+            error: function (xhr, errmsg, err) {}
+        });
+    })
+
+    // Update item in cart
+    $(document).on('click', '.update-button', function (e) {
+        e.preventDefault();
+        var prodid = $(this).data('index');
+        $.ajax({
+            type: 'POST',
+            url: '{% url "store_cart:cart_update" %}', 
+            data: {
+                productid: $(this).data('index'),
+                productqty: $('#select' + prodid + ' option:selected').text(),
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                action: 'post'
+            },
+            success: function (json) {
+                document.getElementById("cart-qty").innerHTML = json.quantity
+                document.getElementById("subtotal").innerHTML = json.subtotal
+            },
+            error: function (xhr, errmsg, err) {}
+        });
+    })
+</script>
 {% endblock %}
