@@ -7,7 +7,7 @@ from store.models import Product
 
 def cart_summary(request):
     cart = Cart(request)
-    return render(request, 'store/cart/cart_info.html', {'cart': cart})
+    return render(request, 'cart/cart_info.html', {'cart': cart})
 
 def cart_add(request):
     cart = Cart(request)
