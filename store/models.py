@@ -2,9 +2,8 @@
     Tables
 """
 from django.db import models
-from django.contrib.auth.models import User 
+from django.conf import settings
 from django.urls import reverse
-from django.db.models import F
 
 
 class ProductManager(models.Manager):
@@ -28,7 +27,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
-    created_by = models.ForeignKey(User, related_name='product_created_by', on_delete=models.CASCADE)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='product_created_by', on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     brand = models.CharField(max_length=255)
     condition = models.CharField(max_length=255)

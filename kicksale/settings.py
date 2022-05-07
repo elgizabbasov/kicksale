@@ -24,6 +24,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'store',
     'store_cart',
+    'account',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -113,3 +115,10 @@ STATIC_URL = '/static/'
 # && not using OS? (win & macos issues?)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+# Customer user model
+AUTH_USER_MODEL = 'account.UserBase'
+LOGIN_REDIRECT_URL = '/account/dashboard'
+LOGIN_URL = '/account/login/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
