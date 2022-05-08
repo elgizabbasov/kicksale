@@ -121,4 +121,5 @@ AUTH_USER_MODEL = 'account.UserBase'
 LOGIN_REDIRECT_URL = '/account/dashboard'
 LOGIN_URL = '/account/login/'
 
+# Django Crispy forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
