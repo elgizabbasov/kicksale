@@ -3,5 +3,10 @@
 
 {% block title %} Register {% endblock %}
 {% block content %}
-{% crispy form %}
+
+<form class="account-form p-4 rounded col-lg-10 mx-auto" action="." method="post">
+    {% csrf_token %}
+    {% crispy form %}
+</form>
+
 {% endblock %}

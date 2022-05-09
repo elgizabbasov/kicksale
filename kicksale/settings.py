@@ -123,3 +123,6 @@ LOGIN_URL = '/account/login/'
 
 # Django Crispy forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
