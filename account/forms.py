@@ -19,9 +19,9 @@ class UserRegistrationForm(forms.Form):
         model = UserBase
         fields = ('user_name', 'email',)
         
-    def clean_username(self):
+    def clean_user_name(self):
         user_name = self.cleaned_data['user_name'].lower()
-        n = UserBase.objects.filter(user=user_name)
+        n = UserBase.objects.filter(user_name=user_name)
         if n.count():
             raise forms.ValidationError(f"Please use another username, {user_name} is already taken")
         return user_name
