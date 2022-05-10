@@ -36,5 +36,5 @@ class UserRegistrationForm(forms.Form):
         email = self.cleaned_data['email']
         e = UserBase.objects.filter(email=email)
         if e.exists():
-            raise forms.ValidationError(f"Please use another email, {email} is already taken")
+            raise forms.ValidationError(f"Please use another email, {email} has already been used")
         return email
