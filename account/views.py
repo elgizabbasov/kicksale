@@ -26,6 +26,7 @@ def account_register(request):
             cd = userRegForm.cleaned_data
             
             user = UserBase(
+                user_name = cd['user_name'],
                 email = cd['email'],
                 is_active = False
             )
