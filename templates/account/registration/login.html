@@ -1,0 +1,40 @@
+{% extends "../../store/base.html" %}
+{% block title %} Login {% endblock %}
+{% block content %}
+
+<div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0">
+                <h2 class="fw-bold mb-0">Sign In</h2>
+            </div>
+
+            <div class="modal-body p-5 pt-0">
+                <form class="account-form p-4" action="{% url 'account:login' %}" method="post">
+                    {% csrf_token %}
+
+                    {% if form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        Error: Username or passowrd is incorrect!
+                    </div>
+                    {% endif %}
+
+                    <label class="form-label">{{ form.username.label}}</label>
+                    {{ form.username}}
+                    
+                    <label class="form-label">{{ form.password.label}}</label>
+                    {{ form.password}}
+                    
+                    <hr class="my-2">
+                    <div class="d-grid gap-2">
+                        <input type="hidden" name="next" value="{{ next }}">
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" value="Log-in">Sign in</button>
+                    </div>
+                    <hr class="my-4">
+                    <a href="{% url 'account:register' %}">Create Account</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

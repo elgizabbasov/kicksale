@@ -4,6 +4,7 @@ from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 
+
 class CustomAccountManager(BaseUserManager):
     def create_superuser(self, email, user_name, password, **other_fields):
         other_fields.setdefault('is_staff', True)

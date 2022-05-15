@@ -1,7 +1,10 @@
 from django import forms
-from .models import UserBase
+from django.contrib.auth.forms import AuthenticationForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
+
+from .models import UserBase
+
 
 class UserRegistrationForm(forms.Form):
     user_name = forms.CharField(label='Enter Username', min_length=4, max_length=100, help_text='Required')
@@ -38,3 +41,8 @@ class UserRegistrationForm(forms.Form):
         if e.exists():
             raise forms.ValidationError(f"Please use another email, {email} has already been used")
         return email
+    
+
+class UserLoginForm(AuthenticationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control mb-3', 'placeholder': 'Username', 'id': 'login-username'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password', 'id': 'login-password'}))
