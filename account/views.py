@@ -8,7 +8,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
 from .models import UserBase
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, UserEditDetailsForm
 from .token import account_activation_token
 
 
@@ -16,9 +16,21 @@ from .token import account_activation_token
 def dashboard(request):
     return render(request, 'account/user/dashboard.html')
 
+@login_required
+def change_details(request):
+    if request.method == 'POST':
+        user_form = UserEditDetailsForm(instance=request.user, data=request.POST)
+        
+        if user_form.is_valid():
+            user_form.save()
+    else:
+        user_form = UserEditDetailsForm(instance=request.user)
+        
+    return render(request, 'account/user/change_details.html', {'form': user_form})
+
 def account_register(request):
-    # if request.user.is_authenticated:
-    #     return redirect('account:dashboard')
+    if request.user.is_authenticated:
+        return redirect('account:dashboard')
     
     if request.method == 'POST':
         userRegForm = UserRegistrationForm(request.POST)

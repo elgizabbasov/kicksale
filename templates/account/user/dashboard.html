@@ -2,5 +2,21 @@
 {% load static %}
 {% block title %} Dashboard {% endblock %}
 {% block content %}
-Your Dashboard
+
+<main>
+    <div class="album py-5 bg-light">
+        <section class="py-5 text-center container">
+            <div class="row py-lg-2">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">Your Dashboard</h1>
+                    <p class="lead text-muted">Welcome to your profile</p>
+                    <p>
+                        <a href="{% url 'account:change_details' %}" class="btn btn-primary my-2">Change Details</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
 {% endblock %}

@@ -6,7 +6,7 @@ from crispy_forms.layout import Submit, Layout, Field
 from .models import UserBase
 
 
-class UserRegistrationForm(forms.Form):
+class UserRegistrationForm(forms.ModelForm):
     user_name = forms.CharField(label='Enter Username', min_length=4, max_length=100, help_text='Required')
     email = forms.EmailField(max_length=100, help_text='Required', error_messages={'required': 'Sorry, you need an email'})
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
@@ -46,3 +46,20 @@ class UserRegistrationForm(forms.Form):
 class UserLoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control mb-3', 'placeholder': 'Username', 'id': 'login-username'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password', 'id': 'login-password'}))
+
+
+class UserEditDetailsForm(forms.ModelForm):
+    user_name = forms.CharField(label='Username', min_length=4, max_length=100, help_text='Required')
+    email = forms.EmailField(label='Email', max_length=200, help_text='You are not allowed to change your email address', widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+    first_name = forms.CharField(label='First Name', max_length=255)
+    
+    class Meta:
+        model = UserBase
+        fields = ('user_name', 'email', 'first_name',)
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.add_input(Submit('submit', 'Save', css_class='btn-primary'))
+        self.fields['user_name'].required = True
+        self.fields['email'].required = True
