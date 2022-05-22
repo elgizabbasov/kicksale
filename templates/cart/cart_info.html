@@ -6,6 +6,7 @@
 <main class="pt-5">
     <div class="container">
         <h1 class="h5 text-center">Your Shopping Cart</h1>
+        {% if cart %}
         {% for item in cart %}
         {% with product=item.product %}
         <div data-index="{{ product.id }}" class="row mb-4 border product-item">
@@ -29,9 +30,7 @@
                             <div class="col-12">
                                 <label for="select">Qty</label>
                                 <select id="select{{product.id}}">
-                                    <option selected>
-                                        {{ item.quantity }}
-                                    </option>
+                                    <option value="" selected disabled hidden> {{ item.quantity }} </option>
                                     <option value="">1</option>
                                     <option value="">2</option>
                                     <option value="">3</option>
@@ -53,6 +52,10 @@
         </div>
         {% endwith %}
         {% endfor %}
+        {% else %}
+            <h2 class="h5 text-center pt-5">I'm sorry I'm afraid there's nothing here.</h2>
+        {% endif %}
+
         <div class="col-12 text-end">
             <div class="h6 fw-bold">Total: $
                 <div id="subtotal" class="d-inline-flex">
@@ -70,7 +73,7 @@
         var prodid = $(this).data('index');
         $.ajax({
             type: 'POST',
-            url: '{% url "store_cart:cart_delete" %}', 
+            url: '{% url "store_cart:cart_delete" %}',
             data: {
                 productid: $(this).data('index'),
                 csrfmiddlewaretoken: "{{csrf_token}}",
@@ -91,7 +94,7 @@
         var prodid = $(this).data('index');
         $.ajax({
             type: 'POST',
-            url: '{% url "store_cart:cart_update" %}', 
+            url: '{% url "store_cart:cart_update" %}',
             data: {
                 productid: $(this).data('index'),
                 productqty: $('#select' + prodid + ' option:selected').text(),
