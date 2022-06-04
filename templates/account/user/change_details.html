@@ -9,4 +9,9 @@
     {% crispy form %}
 </form>
 
+<form class="account-form p-4 rounded col-lg-10 mx-auto" action="{% url "account:account_delete" %}" method="post">
+    {% csrf_token %}
+    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">Delete</button>
+</form>
+
 {% endblock %}

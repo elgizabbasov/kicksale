@@ -28,6 +28,14 @@ def change_details(request):
         
     return render(request, 'account/user/change_details.html', {'form': user_form})
 
+@login_required
+def account_delete(request):
+    user = UserBase.objects.get(user_name=request.user)
+    user.is_active = False # :)
+    user.save()
+    logout(request)
+    return redirect('account:delete_profile') # Confirm account deletion
+
 def account_register(request):
     if request.user.is_authenticated:
         return redirect('account:dashboard')
