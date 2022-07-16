@@ -1,7 +1,7 @@
 {% extends "../../store/base.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %} Change Details {% endblock %}
+{% block title %}Account Details{% endblock %}
 {% block content %}
 
 <form class="account-form p-4 rounded col-lg-10 mx-auto" action="." method="post">
@@ -11,6 +11,8 @@
 
 <form class="account-form p-4 rounded col-lg-10 mx-auto" action="{% url "account:account_delete" %}" method="post">
     {% csrf_token %}
+    <h3 class="fw-light">Delete Profile</h1>
+    <p class="lead text-muted">Are you sure you want to delete your account?</p>
     <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">Delete</button>
 </form>
 
