@@ -11,6 +11,11 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'kicksale.settings')
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'kicksale.settings')
+
+if os.getenv("ENV") == "Heroku":
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'kicksale.settings.core')
+else:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'kicksale.settings.dev')
 
 application = get_wsgi_application()
