@@ -20,4 +20,13 @@ def product_info(request, slug):
     sizes = Size.objects.filter(
              product=product, in_stock=True
     )
-    return render(request, 'store/product_info.html', {'product': product, 'sizes': sizes})
+    quantities = {}
+    for i in sizes:
+        for j in range(i.quantity):
+            quantities[i] = j
+            
+        
+    return render(request, 'store/product_info.html', {'product': product, 'sizes': sizes, 'quantities': quantities})
+
+def about_info(request):
+    return render(request, 'store/about_info.html')

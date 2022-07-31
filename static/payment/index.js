@@ -53,7 +53,7 @@ form.addEventListener('submit', function(ev) {
                 }
             }).then(function(result) {
                 if (result.error) {
-                    console.log('payment ettot')
+                    console.log('payment error')
                     console.log(result.error.message);
                 } else {
                     if (result.paymentIntent.status === 'succeeded') {

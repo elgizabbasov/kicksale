@@ -4,6 +4,8 @@ from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 
+from kicksale.settings.core import EMAIL_HOST_USER
+
 
 class CustomAccountManager(BaseUserManager):
     def create_superuser(self, email, user_name, password, **other_fields):
@@ -60,7 +62,7 @@ class UserBase(AbstractBaseUser, PermissionsMixin):
         send_mail(
             subject,
             message,
-            'l@1.com',
+            EMAIL_HOST_USER,
             [self.email],
             fail_silently=False,
         )

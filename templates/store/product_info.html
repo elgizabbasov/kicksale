@@ -38,8 +38,11 @@
                             <div class="col-6">
                                 <label for="select">Qty</label>
                                 <select id="select">
-                                    {% for s in sizes %}
+                                    {% comment %} {% for s in sizes %}
                                     <option value="">{{ s.quantity }}</option>
+                                    {% endfor %} {% endcomment %}
+                                    {% for k, v in quantities.items %}
+                                    <option value="">{{ v }}</option>
                                     {% endfor %}
                                 </select>
                             </div>

@@ -6,9 +6,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '%furs7kn$f2q5e6hl&rgj4hv-a!xo-ou#lqo0s85pd%sarxo0l'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 #TODO: #6
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
@@ -33,6 +30,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -115,6 +113,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Cart session ID
 CART_SESSION_ID = 'cart'
@@ -133,9 +134,34 @@ LOGIN_URL = '/account/login/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Email settings
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'canadakicksale@gmail.com'
+EMAIL_HOST_PASSWORD = 'dyucnyihvezqcoea'
+EMAIL_PORT = 587
 
 # Stripe
 os.environ.setdefault('STRIPE_PUBLISHABLE_KEY', 'pk_test_51LMbCrBlqtly1GXPvOkGJmRnUQdU6foSK6Z0IqDSCn67bVco5I01IygbPZCMSQJpgucn9lHD5aywAwF0JXTcQ8TO00fc5ho7Rw')
 STRIPE_SECRET_KEY = 'sk_test_51LMbCrBlqtly1GXPi93EUJ84iTmWmYrWtWrOmaW28uYvC0VEnnYEo3DnOrMH64phLFG1SsdXUIZFnYgH7qLLmiNo00WHYW5gCw'
 STRIPE_ENDPOINT_SECRET = 'whsec_2545501c69a4a5f431c9bd1fedb887bc874943db594049c9c6aad06e2ff94c92'
+
+# security.W018
+DEBUG = False
+
+# security.W016
+CSRF_COOKIE_SECURE = True
+
+# security.W012
+SESSION_COOKIE_SECURE = True
+
+# security.W008
+SECURE_SSL_REDIRECT = True
+
+# security.W004
+SECURE_HSTS_SECONDS = 31536000 # One year in seconds
+
+# Another security settings
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_CONTENT_TYPE_NOSNIFF = True

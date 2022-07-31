@@ -43,16 +43,19 @@
                                         All
                                     </a>
                                 </li>
-                                <hr class="mt-0 mb-0" />
+                                <hr class="mt-0 mb-0"/>
                                 {% for c in categories %}
                                 <li {% if c.slug == category.slug %} class="selected" {% endif %}>
                                     <a class="dropdown-item" href="{{ c.get_abs_url }}">{{ c.name|title }}</a>
+                                    {% for cat in c.get_children %}
+                                        <a class="dropdown-item" href="{{ cat.get_abs_url }}">{{ cat.name|title }}</a>
+                                    {% endfor %}
                                 </li>
                                 {% endfor %}
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link px-2">About</a>
+                            <a href="{% url "store:about_info" %}" class="nav-link px-2">About</a>
                         </li>
                     </ul>
                     <a type="button" role="button" href="{% url "store_cart:cart_summary" %}"
@@ -118,15 +121,7 @@
     <footer class="container py-5">
         <div class="row">
             <div class="col-12 col-md">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
-                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img"
-                    viewBox="0 0 24 24">
-                    <title>Product</title>
-                    <circle cx="12" cy="12" r="10" />
-                    <path
-                        d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94" />
-                </svg>
-                <small class="d-block mb-3 text-muted">&copy; 2022</small>
+                <small class="d-block mb-3 text-muted">&copy; 2022 Elgiz Abbasov</small>
             </div>
             <div class="col-6 col-md">
                 <h5>Features</h5>
