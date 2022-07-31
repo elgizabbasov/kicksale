@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = '%furs7kn$f2q5e6hl&rgj4hv-a!xo-ou#lqo0s85pd%sarxo0l'
 
 #TODO: #6
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testkicksale.herokuapp.com/']
 
 
 # Application definition
