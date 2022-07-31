@@ -1,5 +1,6 @@
-### Personal ###
+### Personal + Development ###
 /*.sh
+_documentation
 
 ### Django ###
 *.log

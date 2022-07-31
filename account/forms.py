@@ -9,10 +9,10 @@ from .models import UserBase
     Using Crispy & Django forms
 """
 class UserRegistrationForm(forms.ModelForm):
-    user_name = forms.CharField(label='Enter Username', min_length=4, max_length=100, help_text='Required')
+    user_name = forms.CharField(label='Username', min_length=4, max_length=100, help_text='Required')
     email = forms.EmailField(max_length=100, help_text='Required', error_messages={'required': 'Sorry, you need an email'})
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repeat Password', widget=forms.PasswordInput)
+    password = forms.CharField(label='Password', widget=forms.PasswordInput, help_text='Required')
+    password2 = forms.CharField(label='Repeat Password', widget=forms.PasswordInput, help_text='Required')
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -53,7 +53,7 @@ class UserLoginForm(AuthenticationForm):
 class UserEditDetailsForm(forms.ModelForm):
     user_name = forms.CharField(label='Username', min_length=4, max_length=100, help_text='Required')
     email = forms.EmailField(label='Email', max_length=200, help_text='You are not allowed to change your email address', widget=forms.TextInput(attrs={'readonly': 'readonly'}))
-    first_name = forms.CharField(label='First Name', max_length=255)
+    first_name = forms.CharField(label='First Name', max_length=255, help_text='Required')
     
     class Meta:
         model = UserBase

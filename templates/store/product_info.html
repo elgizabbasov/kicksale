@@ -1,5 +1,4 @@
-{% extends "./base.html" %}
-{% load static %}
+{% extends "base.html" %}
 {% block title %}{{ product.title }}{% endblock %}
 {% block content %}
 
@@ -7,8 +6,14 @@
     <main class="pt-5">
         <div class="row g-3">
             <div class="col-md-5 col-lg-5 order-md-first bg-light">
-                <img class="img-fluid mx-auto d-block" width="400px" alt="Responsive image"
-                    src="{{ product.image.url }}">
+                {% for image in product.product_image.all %}
+                {% if image.is_feature %}
+                <img class="img-fluid mx-auto d-block" width="400px" alt="Responsive image" src="{{ image.image.url }}">
+                {% else %}
+                <img class="img-fluid d-block-inline pt-3" width="200px" alt="Responsive image"
+                    src="{{ image.image.url }}">
+                {% endif %}
+                {% endfor %}
             </div>
             <div class="col-md-7 col-lg-7 ps-md-3 ps-lg-5">
                 <h1 class="mb-0 h4">{{ product.title }}</h1>
@@ -21,7 +26,7 @@
                                 <label for="select">Sizes</label>
                                 <select name="size" id="size">
                                     {% for s in sizes %}
-                                        <option value="">{{ s }}</option>
+                                    <option value="">{{ s }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -33,13 +38,13 @@
                             <div class="col-6">
                                 <label for="select">Qty</label>
                                 <select id="select">
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4</option>
+                                    {% for s in sizes %}
+                                    <option value="">{{ s.quantity }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
-                            <div class="col-6 text-end"><button type="button" id="add-button" value="{{product.id}}" class="btn btn-secondary btn-sm">Add to
+                            <div class="col-6 text-end"><button type="button" id="add-button" value="{{product.id}}"
+                                    class="btn btn-secondary btn-sm">Add to
                                     cart</button></div>
                         </div>
                     </div>
@@ -55,7 +60,7 @@
         e.preventDefault();
         $.ajax({
             type: 'POST',
-            url: '{% url "store_cart:cart_add" %}', 
+            url: '{% url "store_cart:cart_add" %}',
             data: {
                 productid: $('#add-button').val(),
                 productqty: $('#select option:selected').text(),

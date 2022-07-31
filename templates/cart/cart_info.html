@@ -1,21 +1,25 @@
-{% extends "../store/base.html" %}
-{% load static %}
+{% extends "base.html" %}
 {% block title %}Shopping Cart{% endblock %}
 {% block content %}
 
-<main class="pt-5">
+<div class="album py-5 bg-light">
     <div class="container">
-        <h1 class="h5 text-center">Your Shopping Cart</h1>
+        <div class="pb-3 h2 text-center">Your shopping cart</div>
         {% if cart %}
         {% for item in cart %}
         {% with product=item.product %}
         <div data-index="{{ product.id }}" class="row mb-4 border product-item">
             <div class="col-md-3 col-lg-2 order-md-first bg-light">
-                <img class="img-fluid mx-auto d-block" width="auto" alt="Responsive image"
-                    src="{{ product.image.url }}">
+                {% for image in product.product_image.all %}
+                {% if image.is_feature %}
+                <a href="{{ product.get_abs_url }}">
+                    <img class="img-fluid mx-auto d-block" width="auto" alt="Responsive image" src="{{ image.image.url }}">
+                </a>
+                {% endif %}
+                {% endfor %}
             </div>
             <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
-                <a href="{{ product.get_absolute_url }}" class="text-decoration-none text-reset">
+                <a href="{{ product.get_abs_url }}" class="text-decoration-none text-reset">
                     <h1 class="h5 pt-2">{{ product.title }}</h1>
                 </a>
                 <div class="border">
@@ -52,26 +56,22 @@
         </div>
         {% endwith %}
         {% endfor %}
-        {% else %}
-        <h2 class="h5 text-center pt-5">It's so lonely here.</h2>
-        {% endif %}
-
-        <div class="col-md-5 col-lg-4 order-md-last p-0 order-3">
-            <div class="d-grid gap-2 ">
-                <a role="button" href="{% url "payment:cart" %}" class="btn btn-success fw-bold"
-                    type="button">Checkout</a>
-            </div>
-        </div>
-
         <div class="col-12 text-end">
-            <div class="h6 fw-bold">Total: $
+            <div class="h5 fw-bold">Total: $
                 <div id="subtotal" class="d-inline-flex">
                     {{ cart.get_total_cart_price }}
                 </div>
             </div>
         </div>
+        <div class="col text-center">
+            <a role="button" href="{% url "payment:cart" %}" class="w-50 btn btn-success fw-bold"
+                type="button">Checkout</a>
+        </div>
+        {% else %}
+        <h2 class="h5 text-center pt-5">Your cart is empty.</h2>
+        {% endif %}
     </div>
-</main>
+</div>
 
 <script>
     // Delete item from cart

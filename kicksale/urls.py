@@ -1,3 +1,4 @@
+import debug_toolbar
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -9,6 +10,8 @@ urlpatterns = [
     path('cart/', include('store_cart.urls', namespace='store_cart')),
     path('account/', include('account.urls', namespace='account')),
     path('payment/', include('payment.urls', namespace='payment')),
+    path('orders/', include('orders.urls', namespace='orders')),
+    path('__debug__/', include(debug_toolbar.urls)),
 ]
 
 ##TODO: fix before PROD

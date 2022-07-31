@@ -1,26 +1,20 @@
-{% extends "../store/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block title %}Payment{% endblock %}
 {% block content %}
 
 <div class="container">
     <div class="py-5 text-center">
-        <div class="col-md-8 order-md-1">
+        <div id="payment-form" class="col-12 col-lg-6 mx-auto">
             <h4 class="mb-3">Billing address</h4>
+            <div id="card-errors" class="a" role="alert"></div>
             <form class="needs-validation" novalidate>
                 <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="firstName">First name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                    <div class="mb-3">
+                        <label for="fullName">Full name</label>
+                        <input type="text" class="form-control" id="fullName" placeholder="" value="" required>
                         <div class="invalid-feedback">
-                            Valid first name is required.
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="lastName">Last name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                        <div class="invalid-feedback">
-                            Valid last name is required.
+                            Valid full name is required.
                         </div>
                     </div>
                 </div>
@@ -51,7 +45,7 @@
                         <label for="country">Country</label>
                         <select class="custom-select d-block w-100" id="country" required>
                             <option value="">Choose...</option>
-                            <option>United States</option>
+                            <option>Canada</option>
                         </select>
                         <div class="invalid-feedback">
                             Please select a valid country.
@@ -61,7 +55,16 @@
                         <label for="state">State</label>
                         <select class="custom-select d-block w-100" id="state" required>
                             <option value="">Choose...</option>
-                            <option>California</option>
+                            <option>Alberta</option>
+                            <option>British Columbia</option>
+                            <option>New Brunswick</option>
+                            <option>Newfoundland and Labrador</option>
+                            <option>Northwest Territories</option>
+                            <option>Nunavut</option>
+                            <option>Ontario</option>
+                            <option>Quebec</option>
+                            <option>Saskatchewan</option>
+                            <option>Yukon</option>
                         </select>
                         <div class="invalid-feedback">
                             Please provide a valid state.
@@ -75,21 +78,39 @@
                         </div>
                     </div>
                 </div>
-                <hr class="mb-4">
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="same-address">
                     <label class="custom-control-label" for="same-address">Shipping address is the same as my billing
                         address</label>
                 </div>
+                <!--
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="save-info">
                     <label class="custom-control-label" for="save-info">Save this information for next time</label>
                 </div>
-                </div>
+                -->
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                <h4 class="mb-3">Payment</h4>
+                <label for="card-element">Credit or debit card</label>
+
+                <div id="card-element" class="form-control form-control-payment">
+                    <!-- Payments will be here -->
+                </div>
+
+                <hr style="color:#fff"/>
+
+                <button id="submit" class="btn btn-primary w-50 btn-lg btn-block"
+                    data-secret="{{ client_secret }}">Pay</button>
             </form>
         </div>
     </div>
+</div>
 
-    {% endblock %}
+<script>
+    var STRIPE_PUBLISHABLE_KEY = '{{STRIPE_PUBLISHABLE_KEY}}'
+    var CSRF_TOKEN = '{{ csrf_token }}';
+</script>
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{% static 'payment/index.js' %}" data-rel-js></script>
+
+{% endblock %}
