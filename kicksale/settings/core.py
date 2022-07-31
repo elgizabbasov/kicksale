@@ -67,8 +67,12 @@ WSGI_APPLICATION = 'kicksale.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'daki474lll30rf',
+        'USER': 'grzjjkjvfambgn',
+        'PASSWORD': '96c34a922a476158515609582a9a0ac619c975c85a1d502ac3b8e1a4c4ce7a28',
+        'HOST': 'ec2-34-235-31-124.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
