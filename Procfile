@@ -1,1 +1,1 @@
-web:gunicorn kicksale.wsgi
+web: gunicorn kicksale.wsgi
