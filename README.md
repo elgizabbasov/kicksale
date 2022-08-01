@@ -2,6 +2,13 @@
 Welcome to Kicksale!
 Here you are able to purchase on-demand sneakers for the lowest prices!
 
+Was developed using Python 3.9.6, Django 4.0.6 and Bootstrap 4.
+
+# Models
+
+# Views
+
+# Templates
 
 # Payment
 All the payments are done through Stripe Elements; KickSale does not collect any card information from users. 
