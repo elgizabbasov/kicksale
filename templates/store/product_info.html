@@ -41,7 +41,7 @@
                                 <div class="col-6">
                                     <label for="select">Qty</label>
                                     <select name="qty" id="qty" form="id_sizeForm">
-
+                                        
                                     </select>
                                 </div>
                                 <div class="col-6 text-end"><button type="button" id="add-button" value="{{product.id}}"
@@ -65,7 +65,7 @@
             url: '{% url "store_cart:cart_add" %}',
             data: {
                 productid: $('#add-button').val(),
-                productqty: $('#select option:selected').text(),
+                productqty: $('#qty option:selected').text(),
                 csrfmiddlewaretoken: "{{csrf_token}}",
                 action: 'post'
             },
