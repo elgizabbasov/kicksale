@@ -10,6 +10,15 @@ Was developed using Python 3.9.6, Django 4.0.6 and Bootstrap 4.
 
 # Templates
 
+# Onboard
+Download virtualenv:
+
+(venv) pip install -r requirements.txt
+(venv) python manage.py runserver # Will run in dev mode
+
+# Heroku
+
+
 # Payment
 All the payments are done through Stripe Elements; KickSale does not collect any card information from users. 
 
