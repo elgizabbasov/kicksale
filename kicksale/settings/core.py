@@ -6,6 +6,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '%furs7kn$f2q5e6hl&rgj4hv-a!xo-ou#lqo0s85pd%sarxo0l'
 
+# security.W018
+DEBUG = True
+
 #TODO: #6
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testkicksale2.herokuapp.com']
 
@@ -126,8 +129,12 @@ CART_SESSION_ID = 'cart'
 
 ##TODO: #6 Point to prod server insted of local! 
 # && not using OS? (win & macos issues?)
-MEDIA_URL = '/static/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '/static/media/')
+MEDIA_URL = 'static/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
+
+if DEBUG:
+    MEDIA_URL = 'media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Customer user model
 AUTH_USER_MODEL = 'account.UserBase'
@@ -150,20 +157,17 @@ os.environ.setdefault('STRIPE_PUBLISHABLE_KEY', 'pk_test_51LMbCrBlqtly1GXPvOkGJm
 STRIPE_SECRET_KEY = 'sk_test_51LMbCrBlqtly1GXPi93EUJ84iTmWmYrWtWrOmaW28uYvC0VEnnYEo3DnOrMH64phLFG1SsdXUIZFnYgH7qLLmiNo00WHYW5gCw'
 STRIPE_ENDPOINT_SECRET = 'whsec_2545501c69a4a5f431c9bd1fedb887bc874943db594049c9c6aad06e2ff94c92'
 
-# security.W018
-DEBUG = False
-
 # security.W016
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
 
 # security.W012
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
 
 # security.W008
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 
 # security.W004
-SECURE_HSTS_SECONDS = 31536000 # One year in seconds
+# SECURE_HSTS_SECONDS = 31536000 # One year in seconds
 
 # Another security settings
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
