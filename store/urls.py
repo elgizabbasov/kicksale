@@ -9,4 +9,5 @@ urlpatterns = [
     path('about/', views.about_info, name='about_info'),
     path('<slug:slug>', views.product_info, name='product_info'),
     path('store/<slug:category_slug>/', views.categories_list, name='categories_list'),
+    path('get-quantities/', views.get_quantities, name='get_quantities'),
 ]

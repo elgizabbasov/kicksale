@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 
 from .models import Category, Size, Product
@@ -20,13 +21,16 @@ def product_info(request, slug):
     sizes = Size.objects.filter(
              product=product, in_stock=True
     )
-    quantities = {}
-    for i in sizes:
-        for j in range(i.quantity):
-            quantities[i] = j
-            
         
-    return render(request, 'store/product_info.html', {'product': product, 'sizes': sizes, 'quantities': quantities})
+    return render(request, 'store/product_info.html', {'product': product, 'sizes': sizes})
+
+def get_quantities(request):
+    size = request.GET.get('size')
+    quantities = list(Size.objects.filter(prod_size=size).values("quantity"))
+    response_data = {
+        "quantities": quantities
+    }
+    return JsonResponse(response_data)
 
 def about_info(request):
     return render(request, 'store/about_info.html')

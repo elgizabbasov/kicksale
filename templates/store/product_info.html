@@ -9,7 +9,8 @@
             <div class="col-md-5 col-lg-5 order-md-first bg-light">
                 {% for image in product.product_image.all %}
                 {% if image.is_feature %}
-                <img class="img-fluid mx-auto d-block" width="400px" alt="Responsive image" src="{% static  image.image.url %}">
+                <img class="img-fluid mx-auto d-block" width="400px" alt="Responsive image"
+                    src="{% static  image.image.url %}">
                 {% else %}
                 <img class="img-fluid d-block-inline pt-3" width="200px" alt="Responsive image"
                     src="{% static  image.image.url %}">
@@ -21,37 +22,34 @@
                 <p><span class="lead">{{ product.brand }}</span></p>
                 <p>{{ product.condition|slice:":355" }}</p>
                 <div class="border">
-                    <div class="col border-bottom">
-                        <div class="row p-3">
-                            <div class="col-6">
-                                <label for="select">Sizes</label>
-                                <select name="size" id="size">
-                                    {% for s in sizes %}
-                                    <option value="">{{ s }}</option>
-                                    {% endfor %}
-                                </select>
+                    <form name="sizeForm" id="id_sizeForm" action="" method="get">
+                        <div class="col border-bottom">
+                            <div class="row p-3">
+                                <div class="col-6">
+                                    <label for="select">Sizes</label>
+                                    <select name="size" id="size" form="id_sizeForm">
+                                        {% for s in sizes %}
+                                        <option value="{{s}}">{{ s }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-6 text-end"><span class="h4 fw-bold">${{ product.price }}</span></div>
                             </div>
-                            <div class="col-6 text-end"><span class="h4 fw-bold">${{ product.price }}</span></div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="row p-3">
-                            <div class="col-6">
-                                <label for="select">Qty</label>
-                                <select id="select">
-                                    {% comment %} {% for s in sizes %}
-                                    <option value="">{{ s.quantity }}</option>
-                                    {% endfor %} {% endcomment %}
-                                    {% for k, v in quantities.items %}
-                                    <option value="">{{ v }}</option>
-                                    {% endfor %}
-                                </select>
+                        <div class="col">
+                            <div class="row p-3">
+                                <div class="col-6">
+                                    <label for="select">Qty</label>
+                                    <select name="qty" id="qty" form="id_sizeForm">
+
+                                    </select>
+                                </div>
+                                <div class="col-6 text-end"><button type="button" id="add-button" value="{{product.id}}"
+                                        class="btn btn-secondary btn-sm">Add to
+                                        cart</button></div>
                             </div>
-                            <div class="col-6 text-end"><button type="button" id="add-button" value="{{product.id}}"
-                                    class="btn btn-secondary btn-sm">Add to
-                                    cart</button></div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -76,6 +74,30 @@
             },
             error: function (xhr, errmsg, err) {}
         });
-    })
+    });
+</script>
+
+<script>
+    document.getElementById("size").addEventListener("change", function() {
+        document.getElementById("qty").innerHTML = "";
+        $.ajax({
+            type: 'GET',
+            url: 'get-quantities/',
+            data:{
+                size: $("#size").val(),
+            },
+            dataType: 'json',
+            success:function(response){
+                var select = document.getElementById("qty")
+                for(var i=1; i<response.quantities[0]["quantity"] + 1; i++)
+                {
+                    var option = document.createElement("option");
+                    option.value = i;
+                    option.innerHTML = i;
+                    select.appendChild(option);
+                }
+            },
+        });
+    });
 </script>
 {% endblock %}
