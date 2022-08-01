@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Kicksale{% endblock %}
 {% block content %}
 
@@ -26,7 +27,7 @@
                         {% for image in product.product_image.all %}
                         {% if image.is_feature %}
                         <a href="{{ product.get_abs_url }}">
-                            <img class="img-fluid" alt="Responsive image" src="{{ image.image.url }}">
+                            <img class="img-fluid" alt="Responsive image" src="{% static  image.image.url %}">
                         </a>
                         {% endif %}
                         {% endfor %}
