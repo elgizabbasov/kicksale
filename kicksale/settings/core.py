@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET")
 
 # security.W018
-DEBUG = True
+DEBUG = False
 
 #TODO: #6
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'kicksale2.herokuapp.com']
@@ -166,16 +166,16 @@ STRIPE_SECRET_KEY = 'sk_test_51LMbCrBlqtly1GXPi93EUJ84iTmWmYrWtWrOmaW28uYvC0VEnn
 STRIPE_ENDPOINT_SECRET = 'whsec_2545501c69a4a5f431c9bd1fedb887bc874943db594049c9c6aad06e2ff94c92'
 
 # security.W016
-CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = True
 
 # security.W012
-SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = True
 
 # security.W008
-SECURE_SSL_REDIRECT = False
+SECURE_SSL_REDIRECT = True
 
 # security.W004
-# SECURE_HSTS_SECONDS = 31536000 # One year in seconds
+SECURE_HSTS_SECONDS = 31536000 # One year in seconds
 
 # Another security settings
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
