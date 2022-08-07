@@ -11,7 +11,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET")
 DEBUG = False
 
 #TODO: #6
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testkicksale2.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'kicksale2.herokuapp.com']
 
 
 # Application definition
