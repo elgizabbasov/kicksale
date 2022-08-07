@@ -1,5 +1,4 @@
 import os
-from pickle import FALSE
 import dj_database_url
 from pathlib import Path
 
