@@ -20,7 +20,7 @@
                                 {% for image in product.product_image.all %}
                                 {% if image.is_feature %}
                                 <a href="{{ product.get_abs_url }}">
-                                    <img class="img-fluid" alt="Responsive image" src="{% static image.image.url %}">
+                                    <img class="img-fluid" alt="Responsive image" src="{{ MEDIA_URL }} {{ image.image.url }}">
                                 </a>
                                 {% endif %}
                                 {% endfor %}
