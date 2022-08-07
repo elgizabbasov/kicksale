@@ -111,6 +111,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Cart session ID
+CART_SESSION_ID = 'cart'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -137,12 +139,10 @@ STATICFILES_DIRS = (
 
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+DEFAULT_FILE_STORAGE = 'kicksale.storages.MediaStore'
 
-# Cart session ID
-CART_SESSION_ID = 'cart'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Customer user model
 AUTH_USER_MODEL = 'account.UserBase'
