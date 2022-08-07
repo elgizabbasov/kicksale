@@ -54,7 +54,7 @@
                                     <div class="col-md-2 d-none d-md-block">
                                         {% for image in item.product.product_image.all %}
                                         {% if image.is_feature %}
-                                        <img class="img-fluid" style="width:90px" src="{% static image.image.url %}"/>
+                                        <img class="img-fluid" style="width:90px" src="{{ image.image.url }}"/>
                                         {% endif %}
                                         {% endfor %}
                                     </div>

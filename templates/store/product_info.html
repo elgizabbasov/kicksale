@@ -10,10 +10,10 @@
                 {% for image in product.product_image.all %}
                 {% if image.is_feature %}
                 <img class="img-fluid mx-auto d-block" width="400px" alt="Responsive image"
-                    src="{% static image.image.url %}">
+                    src="{{ image.image.url }}">
                 {% else %}
                 <img class="img-fluid d-block-inline pt-3" width="200px" alt="Responsive image"
-                    src="{% static image.image.url %}">
+                    src="{{ image.image.url }}">
                 {% endif %}
                 {% endfor %}
             </div>

@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET")
 
 # security.W018
-DEBUG = False
+DEBUG = True
 
 #TODO: #6
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'kicksale2.herokuapp.com']
@@ -115,21 +115,34 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, "static"),
+# )
+# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+AWS_ACCESS_KEY_ID = 'AKIA6KUW7X2YD4LNNQGB'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'kicksaleawsbucket'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age-86400'}
+AWS_DEFAULT_ACL = None
+
+AWS_LOCATION = 'static'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
-STATIC_ROOT = os.path.join(BASE_DIR, "live-static", "staticfiles")
 
-# TODO: Change to S3
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
 # Cart session ID
 CART_SESSION_ID = 'cart'
 
-# TODO: Same as above
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "live-static", "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Customer user model
 AUTH_USER_MODEL = 'account.UserBase'
@@ -153,16 +166,16 @@ STRIPE_SECRET_KEY = 'sk_test_51LMbCrBlqtly1GXPi93EUJ84iTmWmYrWtWrOmaW28uYvC0VEnn
 STRIPE_ENDPOINT_SECRET = 'whsec_2545501c69a4a5f431c9bd1fedb887bc874943db594049c9c6aad06e2ff94c92'
 
 # security.W016
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
 
 # security.W012
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
 
 # security.W008
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 
 # security.W004
-SECURE_HSTS_SECONDS = 31536000 # One year in seconds
+# SECURE_HSTS_SECONDS = 31536000 # One year in seconds
 
 # Another security settings
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
