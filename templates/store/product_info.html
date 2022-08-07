@@ -10,10 +10,10 @@
                 {% for image in product.product_image.all %}
                 {% if image.is_feature %}
                 <img class="img-fluid mx-auto d-block" width="400px" alt="Responsive image"
-                    src="{% static  image.image.url %}">
+                    src="{% static image.image.url %}">
                 {% else %}
                 <img class="img-fluid d-block-inline pt-3" width="200px" alt="Responsive image"
-                    src="{% static  image.image.url %}">
+                    src="{% static image.image.url %}">
                 {% endif %}
                 {% endfor %}
             </div>
@@ -99,5 +99,29 @@
             },
         });
     });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById("qty").innerHTML = "";
+        $.ajax({
+            type: 'GET',
+            url: 'get-quantities/',
+            data:{
+                size: $("#size").val(),
+            },
+            dataType: 'json',
+            success:function(response){
+                var select = document.getElementById("qty")
+                for(var i=1; i<response.quantities[0]["quantity"] + 1; i++)
+                {
+                    var option = document.createElement("option");
+                    option.value = i;
+                    option.innerHTML = i;
+                    select.appendChild(option);
+                }
+            },
+        });
+    }, false);
 </script>
 {% endblock %}
