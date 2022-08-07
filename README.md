@@ -18,6 +18,8 @@ Download virtualenv:
 
 # Heroku
 
+# Amazon S3
+Using Amazon S3 buckets to store static and media files.
 
 # Payment
 All the payments are done through Stripe Elements; KickSale does not collect any card information from users. 
