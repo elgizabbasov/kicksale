@@ -128,12 +128,12 @@ CART_SESSION_ID = 'cart'
 
 ##TODO: #6 Point to prod server insted of local! 
 # && not using OS? (win & macos issues?)
-MEDIA_URL = 'static/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 if DEBUG:
-    MEDIA_URL = 'media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+    MEDIA_URL = 'static/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
 
 # Customer user model
 AUTH_USER_MODEL = 'account.UserBase'
