@@ -4,7 +4,6 @@ boto3==1.24.46
 botocore==1.27.46
 certifi==2022.6.15
 charset-normalizer==2.1.0
-cloudinary==1.29.0
 coverage==5.3.1
 dj-database-url==1.0.0
 Django==4.0.6
@@ -37,4 +36,3 @@ toml==0.10.2
 typing-extensions==4.2.0
 tzdata==2022.1
 urllib3==1.26.10
-whitenoise==6.2.0

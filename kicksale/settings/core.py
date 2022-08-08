@@ -34,7 +34,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -122,8 +121,6 @@ CART_SESSION_ID = 'cart'
 #     os.path.join(BASE_DIR, "static"),
 # )
 # STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 AWS_ACCESS_KEY_ID = 'AKIA6KUW7X2YD4LNNQGB'
 AWS_SECRET_ACCESS_KEY = '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'
