@@ -41,10 +41,11 @@ And navigate to `http://127.0.0.1:8000/`.
 # Templates
 
 # Heroku
-Application uses Heroku's PostgreSQL as the database.
+Kicksale is deployed using Heroku.
+Application uses Heroku's PostgreSQL Free Plan as the database.
 
 # Amazon S3
-Application uses Amazon S3 buckets to store static and media files.
+Application uses Amazon S3 buckets to store static and media files across the app.
 
 # Stripe Payment
 All the payments are done through Stripe Elements; Kicksale does not collect any card information from users. 
