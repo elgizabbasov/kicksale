@@ -10,9 +10,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET")
 # security.W018
 DEBUG = False
 
-#TODO: #6
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'kicksale2.herokuapp.com']
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'kicksale.herokuapp.com']
 
 # Application definition
 
@@ -64,7 +62,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kicksale.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -96,7 +93,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -116,15 +112,9 @@ CART_SESSION_ID = 'cart'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, "static"),
-# )
-# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
-AWS_ACCESS_KEY_ID = 'AKIA6KUW7X2YD4LNNQGB'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'kicksaleawsbucket'
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age-86400'}
 AWS_DEFAULT_ACL = None
@@ -154,13 +144,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'canadakicksale@gmail.com'
-EMAIL_HOST_PASSWORD = 'dyucnyihvezqcoea'
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587
 
 # Stripe
 os.environ.setdefault('STRIPE_PUBLISHABLE_KEY', 'pk_test_51LMbCrBlqtly1GXPvOkGJmRnUQdU6foSK6Z0IqDSCn67bVco5I01IygbPZCMSQJpgucn9lHD5aywAwF0JXTcQ8TO00fc5ho7Rw')
-STRIPE_SECRET_KEY = 'sk_test_51LMbCrBlqtly1GXPi93EUJ84iTmWmYrWtWrOmaW28uYvC0VEnnYEo3DnOrMH64phLFG1SsdXUIZFnYgH7qLLmiNo00WHYW5gCw'
-STRIPE_ENDPOINT_SECRET = 'whsec_2545501c69a4a5f431c9bd1fedb887bc874943db594049c9c6aad06e2ff94c92'
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
+STRIPE_ENDPOINT_SECRET = os.environ.get("STRIPE_ENDPOINT_SECRET")
 
 # security.W016
 CSRF_COOKIE_SECURE = True
