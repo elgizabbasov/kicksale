@@ -47,7 +47,7 @@ Application uses Heroku's PostgreSQL Free Plan as the database.
 To have the server connecting to the correct DATABASE_URL, `dj-database-url` package is used which grabs the URL from the running dyno***
 
 # Amazon S3
-Application uses Amazon S3 buckets to store static and media files across the app.
+Application uses Amazon S3 Buckets to store static and media files inside Objects across the app.
 To be able to integrate S3 with a Django app, several libraries are required:
 `boto3`
 `django-storages`
