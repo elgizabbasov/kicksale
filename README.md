@@ -17,9 +17,10 @@ Download virtualenv:
 (venv) python manage.py runserver # Will run in dev mode
 
 # Heroku
+Application uses Heroku's PostgreSQL as the database.
 
 # Amazon S3
-Using Amazon S3 buckets to store static and media files.
+Application uses Amazon S3 buckets to store static and media files.
 
 # Payment
 All the payments are done through Stripe Elements; KickSale does not collect any card information from users. 
