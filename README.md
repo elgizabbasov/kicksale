@@ -2,6 +2,9 @@
 Welcome to Kicksale!
 Here you are able to purchase on-demand sneakers for the lowest prices!
 
+![Demo](https://user-images.githubusercontent.com/72108920/183554373-edaa5932-aef4-4eca-ad84-0257d324c128.gif)
+
+
 Was developed using Python 3.9.6, Django 4.0.6 and Bootstrap 4.
 
 # Setup
