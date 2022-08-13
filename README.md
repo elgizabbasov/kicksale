@@ -30,12 +30,36 @@ Then install the dependencies:
 Note the `(myenv)` in front of the prompt. This indicates that this terminal
 session operates in a virtual environment.
 
-Once `pip` has finished downloading the dependencies:
+### Perform Migrations
+
+The SQLite3 database will not be shipped with the project and needs to be initialized before first run. To do this run:
+
+```sh
+(myenv)$ python manage.py makemigrations
+```
+
+to package up the initial models into individual migration files, and
+
+```sh
+(myenv)$ python manage.py migrate
+```
+
+directly after that. This will apply the initial models into the database. 
+
+### Create a Superuser
+
+To access the website's admin panel, you must also create a Django super user. This can be achieved by running:
+```sh
+(myenv)$ python manage.py createsuperuser
+```
+
+and following the instructions after. This is required for adding categories, products, and sizes.
 
 ```sh
 (myenv)$ python manage.py runserver
 ```
-And navigate to `http://127.0.0.1:8000/`.
+
+And navigate to the host address presented in the terminal. (Often `http://127.0.0.1:8000/`).
 
 # Models
 
