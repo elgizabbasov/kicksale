@@ -84,3 +84,5 @@ To be able to integrate S3 with a Django app, several libraries are required:
 All the payments are done through Stripe Elements; Kicksale does not collect any card information from users. 
 
 ![image](https://user-images.githubusercontent.com/72108920/179429046-dd680d32-010b-45de-994a-583ca04c7221.png)
+
+# How to Contribute
