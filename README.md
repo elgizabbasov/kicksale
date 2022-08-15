@@ -1,6 +1,6 @@
 # Kicksale
 Welcome to Kicksale!
-Here you are able to purchase on-demand sneakers for the lowest prices!
+[Here](https://kicksale.herokuapp.com/) you are able to purchase on-demand sneakers for the lowest prices!
 
 ![Demo](https://user-images.githubusercontent.com/72108920/183554373-edaa5932-aef4-4eca-ad84-0257d324c128.gif)
 
