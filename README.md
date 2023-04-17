@@ -62,17 +62,11 @@ and following the instructions after. This is required for adding categories, pr
 
 And navigate to the host address presented in the terminal. (Often `http://127.0.0.1:8000/`).
 
-# Models
-
-# Views
-
-# Templates
-
 # Heroku
-Kicksale is deployed using Heroku.
+Kicksale was deployed using Heroku's Free Tier.
 Heroku requires a `Procfile` and `runtime.txt` files to be present to deploy.
 Application uses Heroku's PostgreSQL Free Plan as the database.
-To have the server connecting to the correct DATABASE_URL, `dj-database-url` package is used which grabs the URL from the running dyno***
+To have the server connecting to the correct DATABASE_URL, `dj-database-url` package is used.
 
 # Amazon S3
 Application uses Amazon S3 Buckets to store static and media files inside Objects across the app.
@@ -80,10 +74,7 @@ To be able to integrate S3 with a Django app, several libraries are required:
 `boto3`
 `django-storages`
 
-
 # Stripe Payment
 All the payments are done through Stripe Elements; Kicksale does not collect any card information from users. 
 
 ![image](https://user-images.githubusercontent.com/72108920/179429046-dd680d32-010b-45de-994a-583ca04c7221.png)
-
-# How to Contribute
